@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var typeOfNumber = "height"
+    @State private var height: Float? = nil
+    @State private var weight: Float? = nil
     
     let typesOfNumber  = ["meter", "centimeter"]
     var body: some View {
@@ -16,19 +18,25 @@ struct ContentView: View {
             Form{
                 Section("入力"){
                     HStack{
-                        Text("身長")
+                        TextField("身長", value: $height, format: .number)
+                            .keyboardType(.decimalPad)
                         Section(""){
                             // Pickerを配置
-                            Picker("Type of Number", selection: $typeOfNumber) {
+                            Picker("", selection: $typeOfNumber) {
                                 ForEach(typesOfNumber, id: \.self) { type in
                                     Text(type)
                                         .foregroundStyle(.blue) // Pickerの中の文字を青色に
                                 }
                             }
-                            .pickerStyle(.wheel) // ホイールタイプのPickerに設定
                         }
                     }
-                    Text("体重")
+                    
+                    HStack{
+                        TextField("体重", value: $weight, format: .number)
+                            .keyboardType(.decimalPad)
+                        Text("kg")
+                    
+                    }
                 }
                 
                 Section("結果"){
