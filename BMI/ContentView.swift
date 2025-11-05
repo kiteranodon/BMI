@@ -17,20 +17,20 @@ struct ContentView: View {
     // 計算プロパティで型変換
     var heightNumber: Float? {
         guard let value = Float(height) else { return nil }
-            if typeOfNumber == "centimeter" {
-                return value / 100.0
-            } else {
-                return value // meter の想定
-            }
+        if typeOfNumber == "centimeter" {
+            return value / 100.0
+        } else {
+            return value // meter の想定
         }
+    }
     var weightNumber: Float? {
         Float(weight)
     }
     
     var bmi: Float? {
         guard let h = heightNumber, let w = weightNumber, h > 0 else { return nil }
-               return w / (h * h)
-           }
+        return w / (h * h)
+    }
     
     
     
